@@ -1,5 +1,6 @@
-
+from os import path
 import json
+from catalog.models import ContactInfo
 
 from django.shortcuts import render
 
@@ -15,8 +16,14 @@ def contacts(request):
         print(f'{data}')
         with open('user_data.json', 'w', encoding="utf-8") as file:
             json.dump(data, file)
-    return render(request, 'contacts.html')
+    contact = ContactInfo.objects.all()
+    info = {'odj_info': contact}
+    return render(request, 'contacts.html', info)
 
 
 def main_page(requests):
+    if path.exists("category_data.json"):
+        with open('product_data.json') as file:
+            info = json.load(file)
+            print(info[:6])
     return render(requests, 'main_page.html')

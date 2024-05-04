@@ -1,0 +1,20 @@
+[
+  {
+    "model": "catalog.contactinfo",
+    "pk": 1,
+    "fields": {
+      "name": "qwerty",
+      "phone": "56788474",
+      "message": "some text"
+    }
+  },
+  {
+    "model": "catalog.contactinfo",
+    "pk": 2,
+    "fields": {
+      "name": "asdfgh",
+      "phone": "436579774",
+      "message": "text"
+    }
+  }
+]
