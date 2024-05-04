@@ -1,0 +1,26 @@
+[
+  {
+    "model": "catalog.category",
+    "pk": 46,
+    "fields": {
+      "name": "тетради",
+      "description": "для записей"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 47,
+    "fields": {
+      "name": "учебники",
+      "description": "для учебы"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 48,
+    "fields": {
+      "name": "альбомы",
+      "description": "для зарисовок"
+    }
+  }
+]

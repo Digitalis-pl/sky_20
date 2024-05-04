@@ -21,6 +21,28 @@
 
 <div class="container">
     <div class="row text-start">
+        {% for post in odj_info %}
+            <div class="col-lg-9 col-md-6 col-sm-12">
+                <div class="card mb-4 box-shadow">
+                    <div class="card-body">
+                        <table class="table table-striped">
+                            <tr>
+                                <td class="w-25">имя</td>
+                                <td>{{ post.name }}</td>
+                            </tr>
+                            <tr>
+                                <td class="w-25">телефон</td>
+                                <td>{{ post.phone }}</td>
+                            </tr>
+                            <tr>
+                                <td class="w-25">сообщение</td>
+                                <td>{{ post.message }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
         <div class="col-lg-9 col-md-6 col-sm-12">
             <div class="card mb-4 box-shadow">
                 <div class="card-body">

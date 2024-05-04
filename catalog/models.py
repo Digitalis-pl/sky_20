@@ -5,10 +5,10 @@ null_options = {'blank': True, 'null': True}
 
 
 class Product(models.Model):
-    name = models.ForeignKey('Category', on_delete=models.SET_NULL, **null_options)
+    name = models.CharField(max_length=100, verbose_name='название товара', **null_options)
     description = models.TextField(verbose_name='описание', **null_options)
     img = models.ImageField(upload_to='product/img')
-    category = models.CharField(max_length=100)
+    category = models.ForeignKey('Category', on_delete=models.SET_NULL, **null_options)
     price = models.IntegerField(verbose_name='цена', **null_options)
     created_at = models.DateField(verbose_name='дата создания', **null_options)
     updated_at = models.DateField(verbose_name='дата последнего изменения', **null_options)
@@ -31,3 +31,15 @@ class Category(models.Model):
     class Meta:
         verbose_name = 'категория'
         verbose_name_plural = 'категории'
+
+
+class ContactInfo(models.Model):
+    name = models.CharField(max_length=60, verbose_name='имя пользователя', **null_options)
+    phone = models.CharField(max_length=20, verbose_name='телефон', **null_options)
+    message = models.TextField(verbose_name='текст', **null_options)
+
+    def __str__(self):
+        return f'{self.name} {self.phone} {self.message}'
+
+    class Meta:
+        verbose_name = 'контактная информация'
