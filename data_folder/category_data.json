@@ -1,7 +1,7 @@
 [
   {
     "model": "catalog.category",
-    "pk": 46,
+    "pk": 151,
     "fields": {
       "name": "тетради",
       "description": "для записей"
@@ -9,7 +9,7 @@
   },
   {
     "model": "catalog.category",
-    "pk": 47,
+    "pk": 152,
     "fields": {
       "name": "учебники",
       "description": "для учебы"
@@ -17,7 +17,7 @@
   },
   {
     "model": "catalog.category",
-    "pk": 48,
+    "pk": 153,
     "fields": {
       "name": "альбомы",
       "description": "для зарисовок"

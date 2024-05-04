@@ -10,7 +10,8 @@ class Command(BaseCommand):
     def read_info_category():
         if path.exists("data_folder/category_data.json"):
             with open('data_folder/category_data.json', encoding='utf8') as file:
-                return json.load(file)
+                data = json.load(file)
+            return data
 
     @staticmethod
     def read_info_product():
@@ -32,14 +33,20 @@ class Command(BaseCommand):
 
         Category.objects.bulk_create(category_for_create)
 
+        cat = Category.objects.values_list('id', )
+        num = []
+        for el in cat:
+            num.append(el[0])
+
         for product in Command.read_info_product():
+            my_num = product["fields"]['category'] / product["fields"]['category']-len(Command.read_info_category())
             category_for_create.append(
                 Product(name=product['fields']['name'],
                         description=product['fields']['description'],
-                        img=product['fields']['img'], category=Category.objects.get(pk=product["fields"]['category']),
+                        img=product['fields']['img'],
+                        category=Category.objects.get(pk=my_num + max(num)),
                         price=product['fields']['price'], created_at=product['fields']['created_at'],
                         updated_at=product['fields']['updated_at'])
             )
 
         Product.objects.bulk_create(product_for_create)
-
