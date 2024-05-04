@@ -18,7 +18,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 @admin.register(ContactInfo)
-class ProductAdmin(admin.ModelAdmin):
+class ContactInfoAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'phone', 'message')
     list_filter = ('name', 'phone')
     search_fields = ('phone', 'name')
