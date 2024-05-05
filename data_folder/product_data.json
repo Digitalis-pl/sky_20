@@ -6,7 +6,7 @@
       "name": "тетрадь в линейку",
       "description": "64 листа",
       "img": "product/img/Screenshot_2024-04-18_213819.png",
-      "category": 151,
+      "category": 160,
       "price": 100,
       "created_at": "2024-05-04",
       "updated_at": "2024-05-04"
@@ -19,7 +19,7 @@
       "name": "тетрадь в клетк",
       "description": "64 листа",
       "img": "product/img/Screenshot_2024-04-18_213819_qeG9Z69.png",
-      "category": 151,
+      "category": 160,
       "price": 100,
       "created_at": "2024-05-04",
       "updated_at": "2024-05-04"
@@ -32,7 +32,7 @@
       "name": "тетрадь без разлиновки",
       "description": "80 листов",
       "img": "product/img/Screenshot_2024-03-06_100739_dCUda0J.png",
-      "category": 151,
+      "category": 160,
       "price": 100,
       "created_at": "2024-05-04",
       "updated_at": "2024-05-04"
@@ -45,7 +45,7 @@
       "name": "анатомия.т1",
       "description": "остеология",
       "img": "product/img/Screenshot_2024-03-06_100739_qV8je7P.png",
-      "category": 152,
+      "category": 161,
       "price": 205,
       "created_at": "2024-05-04",
       "updated_at": "2024-05-04"
@@ -58,7 +58,7 @@
       "name": "химия.т.1",
       "description": "общая химия",
       "img": "product/img/Screenshot_2024-03-06_100739_Tsk7qxt.png",
-      "category": 152,
+      "category": 161,
       "price": 103,
       "created_at": "2024-05-04",
       "updated_at": "2024-05-04"
@@ -71,7 +71,7 @@
       "name": "химия.т1",
       "description": "органика",
       "img": "product/img/Screenshot_2024-03-06_100739_pKUBpdw.png",
-      "category": 152,
+      "category": 161,
       "price": 678,
       "created_at": "2024-05-04",
       "updated_at": "2024-05-04"
@@ -84,7 +84,7 @@
       "name": "альбом а4",
       "description": "64 листа",
       "img": "product/img/Screenshot_2024-03-06_100739_3MMBlJj.png",
-      "category": 153,
+      "category": 162,
       "price": 300,
       "created_at": "2024-05-04",
       "updated_at": "2024-05-04"
@@ -97,7 +97,7 @@
       "name": "скетчбук",
       "description": "64 листа",
       "img": "product/img/Screenshot_2024-03-06_100739_2bzvcta.png",
-      "category": 153,
+      "category": 162,
       "price": 300,
       "created_at": "2024-05-04",
       "updated_at": "2024-05-04"
