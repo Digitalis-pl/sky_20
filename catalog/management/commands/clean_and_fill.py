@@ -28,7 +28,8 @@ class Command(BaseCommand):
 
         for category in Command.read_info_category():
             category_for_create.append(
-                Category(name=category['fields']['name'], description=category['fields']['description'])
+                Category(name=category['fields']['name'],
+                         description=category['fields']['description'])
             )
 
         Category.objects.bulk_create(category_for_create)
@@ -48,13 +49,13 @@ class Command(BaseCommand):
 
         for product in Command.read_info_product():
             my_num = product['fields']['category'] - priv_num
-            category_for_create.append(
+            product_for_create.append(
                 Product(name=product['fields']['name'],
                         description=product['fields']['description'],
                         img=product['fields']['img'],
                         category=Category.objects.get(pk=round(my_num + last + priv_num)),
-                        price=product['fields']['price'], created_at=product['fields']['created_at'],
-                        updated_at=product['fields']['updated_at'])
-            )
+                        price=product['fields']['price'],
+                        created_at=product['fields']['created_at'],
+                        updated_at=product['fields']['updated_at']))
 
         Product.objects.bulk_create(product_for_create)
