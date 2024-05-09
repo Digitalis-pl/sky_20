@@ -28,7 +28,8 @@ class Command(BaseCommand):
 
         for category in Command.read_info_category():
             category_for_create.append(
-                Category(name=category['fields']['name'], description=category['fields']['description'])
+                Category(name=category['fields']['name'],
+                         description=category['fields']['description'])
             )
 
         Category.objects.bulk_create(category_for_create)
@@ -37,16 +38,24 @@ class Command(BaseCommand):
         num = []
         for el in cat:
             num.append(el[0])
+        priv_num = max(num) - len(Command.read_info_category())
+        x_list = []
+        for x in Command.read_info_product():
+            x_list.append(x['fields']['category'])
+        prod = max(x_list)
+        cicle_fst = max(num) - prod
+        cicle_sec = cicle_fst / len(Command.read_info_category())
+        last = cicle_sec * len(Command.read_info_category())
 
         for product in Command.read_info_product():
-            my_num = product["fields"]['category'] / product["fields"]['category']-len(Command.read_info_category())
-            category_for_create.append(
+            my_num = product['fields']['category'] - priv_num
+            product_for_create.append(
                 Product(name=product['fields']['name'],
                         description=product['fields']['description'],
                         img=product['fields']['img'],
-                        category=Category.objects.get(pk=my_num + max(num)),
-                        price=product['fields']['price'], created_at=product['fields']['created_at'],
-                        updated_at=product['fields']['updated_at'])
-            )
+                        category=Category.objects.get(pk=round(my_num + last + priv_num)),
+                        price=product['fields']['price'],
+                        created_at=product['fields']['created_at'],
+                        updated_at=product['fields']['updated_at']))
 
         Product.objects.bulk_create(product_for_create)
