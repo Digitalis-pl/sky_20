@@ -36,8 +36,8 @@ def product_page(requests):
     return render(requests, 'product_list.html', con)
 
 
-def one_product(requests, name):
-    prod = get_object_or_404(Product, name=name)
+def one_product(requests, pk):
+    prod = get_object_or_404(Product, pk=pk)
     context = {'product': prod}
     return render(requests, 'one_product_page.html', context)
 
