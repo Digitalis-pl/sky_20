@@ -1,0 +1,32 @@
+{% extends 'base/prod.html' %}
+{% load static %}
+{% load my_tags %}
+{% block content %}
+<div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+    {% for prod in object_list %}
+    <div class="col">
+        <div class="box border border-light-subtle m-1">
+            <figure>
+                <div class="box scenee">
+                    <div class="cardss">
+                        <div class="cardd backk p-2">
+                            <p class="text-dark">{{ prod.description | only_100 }}</p>
+                        </div>
+                        <div class="cardd frontt p-2">
+                            <img src="{{ prod.img | media_filter }}" class="img-fluid" alt="item">
+                        </div>
+                    </div>
+                </div>
+                <figcaption>
+                    <hr>
+                    <p class="border-light-subtle">{{ prod.name }}</p>
+                    <hr>
+                    <p class="border-light-subtle">{{ prod.price }} руб.</p>
+                </figcaption>
+                <button type="button" class="w-100 btn btn-lg btn-outline-primary">Sign up for free</button>
+            </figure>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -43,3 +43,19 @@ class ContactInfo(models.Model):
 
     class Meta:
         verbose_name = 'контактная информация'
+
+
+class Blog(models.Model):
+    title = models.CharField(max_length=200, verbose_name='Заголовок')
+    slug = models.CharField(max_length=200, verbose_name='Ссылка', **null_options)
+    content = models.TextField(verbose_name='текст', **null_options)
+    photo = models.ImageField(upload_to='articles/photo')
+    created_at = models.DateField(verbose_name='дата создания', **null_options)
+    published = models.BooleanField(default=True, verbose_name='опубликовано')
+    view_counter = models.IntegerField(default=0, verbose_name='количество просмотров')
+
+    def __str__(self):
+        return f'{self.title} {self.slug} {self.content} {self.photo} {self.created_at} {self.published} {self.view_counter}'
+
+    class Meta:
+        verbose_name = 'Блог'
