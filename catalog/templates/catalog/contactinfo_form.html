@@ -1,0 +1,34 @@
+{% extends 'base/new_base.html' %}
+{% block content %}
+<main class="px-3">
+    <div class="row">
+        <div class="col-9 mx-auto">
+            <div class="card mb-3 text-start">
+                <div class="card-body">
+                    <form method="post" action="" class="form-floating">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="name">Имя</label>
+                            <input type="text" name="name" class="form-control" id="name" placeholder="Ваше имя"
+                                   required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone">Телефон</label>
+                            <input type="text" name="phone" class="form-control" id="phone"
+                                   placeholder="Контактный телефон" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message">Сообщение</label>
+                            <textarea type="text" name="message" class="form-control" id="message" placeholder="текст"
+                                      required></textarea>
+                        </div>
+                        <div class="d-grid mx-auto">
+                            <button type="submit" class="btn btn-lg btn-block btn-outline-primary">Отправить</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
