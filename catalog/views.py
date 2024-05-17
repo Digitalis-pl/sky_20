@@ -8,11 +8,13 @@ import datetime
 
 from django.urls import reverse_lazy
 
+from impinfo import user
+
 from django.shortcuts import render, get_object_or_404
 
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
-from django.core.mail import EmailMultiAlternatives
+from django.core.mail import send_mail
 
 from django.template.loader import render_to_string
 
@@ -117,11 +119,16 @@ class BlogView(ListView):
 
     def get_queryset(self, *args, **kwargs):
         queryset = super().get_queryset(*args, **kwargs)
-        if queryset.filter(view_counter=100):
-            msg = EmailMultiAlternatives(subject='Поздравление', to=['rest@mail.ru'])
-            msg.attach_alternative('Статья набрала 100 просмотров ура!', 'text/html')
-            msg.send()
         queryset = queryset.filter(published=True)
+        for article in Blog.objects.all():
+            if article.view_counter == 100:
+                send_mail(
+                    "Поздравления!",
+                    "Статья набрала 100 просмотров!",
+                    'zhora.karsakov@yandex.ru',
+                    ["zhora.karsakov@mail.ru"],
+                    fail_silently=False,
+                )
         return queryset
 
 
