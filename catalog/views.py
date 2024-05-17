@@ -126,7 +126,7 @@ class BlogView(ListView):
                     "Поздравления!",
                     "Статья набрала 100 просмотров!",
                     'zhora.karsakov@yandex.ru',
-                    ["zhora.karsakov@mail.ru"],
+                    ["someone@mail.ru"],
                     fail_silently=False,
                 )
         return queryset
