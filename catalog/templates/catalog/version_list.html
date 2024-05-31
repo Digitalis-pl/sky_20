@@ -1,0 +1,28 @@
+{% extends 'base/prod.html' %}
+{% load static %}
+{% load my_tags %}
+{% block content %}
+<section class="py-5 container">
+    <div class="row py-lg-5">
+      {% for object in object_list %}
+      <div class="col-lg-4 col-md-8 mx-auto border">
+        <h1 class="fw-light">{{ object.version_name }}</h1>
+        <p class="lead text-body-secondary">{{ object.version_counter }}</p>
+        {% if object.version_sign %}
+        <a href="{% url 'catalog:activity' object.pk %}" class="btn btn-danger my-2">Отключить</a>
+        {% else %}
+        <a href="{% url 'catalog:activity' object.pk %}" class="btn btn-primary my-2">Активировать</a>
+        {% endif %}
+        {% if object.error_message %}
+        <p class="lead text-body-secondary">{{ object.error_message }}</p>
+        {% else %}
+        {% endif %}
+        <p>
+          <a href="{% url 'catalog:update_version' object.pk %}" class="btn btn-primary my-2">Редактировать</a>
+          <a href="{% url 'catalog:version_delete' object.pk %}" class="btn btn-secondary my-2">Удалить</a>
+        </p>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}

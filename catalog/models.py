@@ -59,3 +59,11 @@ class Blog(models.Model):
 
     class Meta:
         verbose_name = 'Блог'
+
+
+class Version(models.Model):
+    product = models.ForeignKey('Product', on_delete=models.SET_NULL, **null_options,  related_name='products')
+    version_counter = models.IntegerField(verbose_name='номер версии')
+    version_name = models.CharField(max_length=150, verbose_name='название версии')
+    version_sign = models.BooleanField(default=True, verbose_name='признак версии')
+    error_message = models.CharField(max_length=38, verbose_name='может быть только одна активная версия', **null_options)
