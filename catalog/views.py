@@ -33,7 +33,7 @@ class VersionListView(ListView):
 
         prod_pk = self.request.GET
         prod = Product.objects.get(pk=prod_pk['id'])
-        queryset = queryset.filter(product=prod)
+        queryset = queryset.filter(product=prod).order_by('id')
         return queryset
 
 
@@ -64,7 +64,6 @@ class ContactView(ListView):
 
 class CategoryListView(ListView):
     model = Category
-
 
 #def contacts(requests):
 #    data = {}
