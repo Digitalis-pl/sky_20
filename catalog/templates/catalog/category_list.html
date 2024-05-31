@@ -1,0 +1,19 @@
+{% extends 'base/prod.html' %}
+{% load static %}
+{% load my_tags %}
+{% block content %}
+<section class="py-5 container">
+    <div class="row py-lg-5">
+      {% for object in object_list %}
+      <div class="col-lg-4 col-md-8 mx-auto border">
+        <h1 class="fw-light">{{ object.name }}</h1>
+        <p class="lead text-body-secondary">{{ object.description }}</p>
+        <p>
+          <a href="#" class="btn btn-primary my-2">Редактировать</a>
+          <a href="#" class="btn btn-secondary my-2">Удалить</a>
+        </p>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}

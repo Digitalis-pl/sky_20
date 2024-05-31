@@ -22,8 +22,11 @@
                     <p class="border-light-subtle">{{ prod.name }}</p>
                     <hr>
                     <p class="border-light-subtle">{{ prod.price }} руб.</p>
+                    <hr>
+
+                    <p class="border-light-subtle">{{ prod.active_version }}</p>
                 </figcaption>
-                <button type="button" class="w-100 btn btn-lg btn-outline-primary">Sign up for free</button>
+                <a href="{% url 'catalog:one_product' prod.pk %}" class="w-100 btn btn-lg btn-outline-primary">Просмотреть</a>
             </figure>
         </div>
     </div>
