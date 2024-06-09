@@ -1,14 +1,13 @@
 from os import path
 import json
 
-import django
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from catalog.models import ContactInfo, Product, Category, Blog, Version
-import datetime
 
 from django.urls import reverse_lazy, reverse
 
-from impinfo import user
+from config.settings import EMAIL_HOST_USER
 
 from django.shortcuts import render, get_object_or_404, redirect
 
@@ -17,6 +16,8 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from catalog.forms import ProductForm, VersionForm
 
 from django.core.mail import send_mail
+
+from users.models import User
 
 from django.template.loader import render_to_string
 
@@ -121,18 +122,24 @@ class OneProductView(DetailView):
 #    return render(requests, 'product_detail.html', context)
 
 
-class CreateProductView(CreateView):
+class CreateProductView(CreateView, LoginRequiredMixin):
     model = Product
     form_class = ProductForm
     success_url = reverse_lazy('catalog:add_prod')
 
+    def form_valid(self, form):
+        product = form.save()
+        user = self.request.user
+        product.product_owner = user
+        product.save()
 
-class DeleteProduct(DeleteView):
+
+class DeleteProduct(DeleteView, LoginRequiredMixin):
     model = Product
     success_url = reverse_lazy('catalog:product_page')
 
 
-class CreateVersionView(CreateView):
+class CreateVersionView(CreateView, LoginRequiredMixin):
     model = Version
     form_class = VersionForm
     success_url = reverse_lazy('catalog:add_version')
@@ -159,13 +166,17 @@ class CreateVersionView(CreateView):
 #    return render(requests, 'catalog/add_product.html', cat)
 
 
-class BlogCreateView(CreateView):
+class BlogCreateView(CreateView, LoginRequiredMixin):
     model = Blog
     fields = ('title', 'content', 'photo', 'created_at', 'published', 'view_counter',)
     success_url = reverse_lazy('catalog:blog_main')
 
     def form_valid(self, form):
         if form.is_valid():
+            product = form.save()
+            user = self.request.user
+            product.product_owner = user
+            product.save()
             new_mat = form.save()
             new_mat.slug = slugify(new_mat.title)
             new_mat.save()
@@ -181,10 +192,10 @@ class BlogView(ListView):
         for article in Blog.objects.all():
             if article.view_counter == 100:
                 send_mail(
-                    "Поздравления!",
-                    "Статья набрала 100 просмотров!",
-                    'zhora.karsakov@yandex.ru',
-                    ["someone@mail.ru"],
+                    subject="Поздравления!",
+                    message="Статья набрала 100 просмотров!",
+                    from_email=EMAIL_HOST_USER,
+                    recipient_list=['someone@mail.ru'],
                     fail_silently=False,
                 )
         return queryset
@@ -200,7 +211,7 @@ class BlogDetailView(DetailView):
         return self.object
 
 
-class BlogUpdateView(UpdateView):
+class BlogUpdateView(UpdateView, LoginRequiredMixin):
     model = Blog
     fields = ('title', 'content', 'photo', 'created_at', 'published', 'view_counter',)
 
@@ -208,7 +219,7 @@ class BlogUpdateView(UpdateView):
         return reverse('catalog:article', kwargs={'pk': self.object.pk})
 
 
-class BlogDeleteView(DeleteView):
+class BlogDeleteView(DeleteView, LoginRequiredMixin):
     model = Blog
     success_url = reverse_lazy('catalog:blog_main')
 

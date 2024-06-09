@@ -14,7 +14,7 @@ from catalog.views import (main_page, ProductView, OneProductView,
 app_name = CatalogConfig.name
 
 urlpatterns = [
-    path('', main_page),
+    path('', main_page, name='main'),
     path('category/', CategoryListView.as_view(), name='category'),
     path('activity/<int:pk>', activity_button, name='activity'),
     path('contacts/', ContactView.as_view(), name='contacts'),
