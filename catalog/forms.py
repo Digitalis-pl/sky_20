@@ -1,6 +1,6 @@
 from django.forms import ModelForm, BooleanField
 from django.core.exceptions import ValidationError
-from catalog.models import Product, Version
+from catalog.models import Product, Version, Blog
 
 
 class StyleFormMixin:
@@ -15,7 +15,7 @@ class StyleFormMixin:
 
 class ProductForm(StyleFormMixin, ModelForm):
     class Meta:
-        fields = '__all__'
+        exclude = ('product_owner',)
         model = Product
 
     def clean(self):
@@ -27,6 +27,12 @@ class ProductForm(StyleFormMixin, ModelForm):
         if len(a) > 0 or len(b) > 0:
             print('some')
             raise ValidationError(f'Использование слов {bad_words}, запрещено')
+
+
+class ArticleForm(StyleFormMixin, ModelForm):
+    class Meta:
+        model = Blog
+        exclude = ('article_owner',)
 
 
 class VersionForm(StyleFormMixin, ModelForm):

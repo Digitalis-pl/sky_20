@@ -105,7 +105,9 @@
             <a class="nav-item nav-link link-body-emphasis" href="#">Health</a>
             <a class="nav-item nav-link link-body-emphasis" href="#">Style</a>
             <a class="nav-item nav-link link-body-emphasis" href="#">Travel</a>
+            {% if user.is_authenticated %}
             <a class="nav-item nav-link link-body-emphasis" href="{% url 'catalog:create_article' %}">Написать статью</a>
+            {% endif %}
         </nav>
     </div>
 </div>

@@ -1,4 +1,5 @@
 from django.db import models
+from users.models import User
 
 # Create your models here.
 null_options = {'blank': True, 'null': True}
@@ -12,6 +13,8 @@ class Product(models.Model):
     price = models.IntegerField(verbose_name='цена', **null_options)
     created_at = models.DateField(verbose_name='дата создания', **null_options)
     updated_at = models.DateField(verbose_name='дата последнего изменения', **null_options)
+
+    product_owner = models.ForeignKey(User, verbose_name='product_owner', on_delete=models.SET_NULL, **null_options)
 
     def __str__(self):
         return f'{self.name} {self.description} {self.category} {self.price}'
@@ -53,6 +56,8 @@ class Blog(models.Model):
     created_at = models.DateField(verbose_name='дата создания', **null_options)
     published = models.BooleanField(default=True, verbose_name='опубликовано')
     view_counter = models.IntegerField(default=0, verbose_name='количество просмотров')
+
+    article_owner = models.ForeignKey(User, verbose_name='product_owner', on_delete=models.SET_NULL, **null_options)
 
     def __str__(self):
         return f'{self.title} {self.slug} {self.content} {self.photo} {self.created_at} {self.published} {self.view_counter}'

@@ -8,10 +8,16 @@
         <div class="col-sm-4 offset-md-1 py-4">
           <h4>Contact</h4>
           <ul class="list-unstyled">
-            <li><a href="{% url 'catalog:add_prod' %}" class="text-white">Добавить продукт</a></li>
-            <li><a href="{% url 'catalog:add_version' %}" class="text-white">Добавить версию</a></li>
             <li><a href="{% url 'catalog:category' %}" class="text-white">Категории</a></li>
             <li><a href="/" class="text-white">На главную</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'catalog:add_prod' %}" class="text-white">Добавить продукт</a></li>
+            <li><a href="{% url 'catalog:add_version' %}" class="text-white">Добавить версию</a></li>
+            <li><a href="{% url 'users:user_log_out' %}" class="text-white">Выйти</a></li>
+            {% else %}
+            <li><a href="{% url 'users:user_log_in' %}" class="text-white">Войти</a></li>
+            <li><a href="{% url 'users:registration' %}" class="text-white">Зарегистрироваться</a></li>
+            {% endif %}
           </ul>
         </div>
       </div>
