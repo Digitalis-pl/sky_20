@@ -122,7 +122,7 @@ class OneProductView(DetailView):
 #    return render(requests, 'product_detail.html', context)
 
 
-class CreateProductView(CreateView, LoginRequiredMixin):
+class CreateProductView(LoginRequiredMixin, CreateView):
     model = Product
     form_class = ProductForm
     success_url = reverse_lazy('catalog:add_prod')
@@ -134,12 +134,12 @@ class CreateProductView(CreateView, LoginRequiredMixin):
         product.save()
 
 
-class DeleteProduct(DeleteView, LoginRequiredMixin):
+class DeleteProduct(LoginRequiredMixin, DeleteView):
     model = Product
     success_url = reverse_lazy('catalog:product_page')
 
 
-class CreateVersionView(CreateView, LoginRequiredMixin):
+class CreateVersionView(LoginRequiredMixin, CreateView):
     model = Version
     form_class = VersionForm
     success_url = reverse_lazy('catalog:add_version')
@@ -166,7 +166,7 @@ class CreateVersionView(CreateView, LoginRequiredMixin):
 #    return render(requests, 'catalog/add_product.html', cat)
 
 
-class BlogCreateView(CreateView, LoginRequiredMixin):
+class BlogCreateView(LoginRequiredMixin, CreateView):
     model = Blog
     fields = ('title', 'content', 'photo', 'created_at', 'published', 'view_counter',)
     success_url = reverse_lazy('catalog:blog_main')
@@ -211,7 +211,7 @@ class BlogDetailView(DetailView):
         return self.object
 
 
-class BlogUpdateView(UpdateView, LoginRequiredMixin):
+class BlogUpdateView(LoginRequiredMixin, UpdateView):
     model = Blog
     fields = ('title', 'content', 'photo', 'created_at', 'published', 'view_counter',)
 
@@ -219,7 +219,7 @@ class BlogUpdateView(UpdateView, LoginRequiredMixin):
         return reverse('catalog:article', kwargs={'pk': self.object.pk})
 
 
-class BlogDeleteView(DeleteView, LoginRequiredMixin):
+class BlogDeleteView(LoginRequiredMixin, DeleteView):
     model = Blog
     success_url = reverse_lazy('catalog:blog_main')
 

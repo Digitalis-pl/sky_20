@@ -90,11 +90,11 @@ class ResetComplete(PasswordResetCompleteView):
     template_name = 'users/password_reset_complete.html'
 
 
-class UserDetailView(DetailView, LoginRequiredMixin):
+class UserDetailView(LoginRequiredMixin, DetailView):
     model = User
 
 
-class UserChangeView(UpdateView, LoginRequiredMixin):
+class UserChangeView(LoginRequiredMixin, UpdateView):
     model = User
     fields = ('avatar', 'email', 'phone', 'country',)
 
