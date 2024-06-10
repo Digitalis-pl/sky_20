@@ -1,0 +1,18 @@
+{% extends 'base/prod.html' %}
+{% load static %}
+{% load my_tags %}
+{% block content %}
+<div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+    <div class="col">
+        <div class="box border border-light-subtle m-1">
+            <p class="text-light">Email: {{ object.email }}</p>
+            <p class="text-light">Phone: {{ object.phone }}</p>
+            <p class="text-light">Avatar: {{ object.avtar }}</p>
+            <p class="text-light">Country: {{ object.country }}</p>
+        </div>
+        <div class="box border border-light-subtle m-1">
+            <a href="{% url 'users:user_change' object.pk %}" class="text-white">Редактировать профиль</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

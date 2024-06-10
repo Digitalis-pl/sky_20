@@ -6,6 +6,8 @@ from users import views
 name = UsersConfig.name
 
 urlpatterns = [
+    path('user_profile/<int:pk>', views.UserDetailView.as_view(), name='user_profile'),
+    path('user_profile_change/<int:pk>', views.UserChangeView.as_view(), name='user_change'),
     path('user_log_in/', LoginView.as_view(), name='user_log_in'),
     path('user_log_out/', LogoutView.as_view(), name='user_log_out'),
     path('registration/', views.UserCreateView.as_view(), name='registration'),
