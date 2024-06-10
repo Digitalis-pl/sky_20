@@ -1,11 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect, HttpResponseRedirect
 from django.core.mail import send_mail
-from django.views.generic import CreateView
-from django.contrib.auth.hashers import make_password
+from django.views.generic import CreateView, DetailView, UpdateView
 from django.contrib.auth.views import (PasswordResetView, PasswordResetDoneView,
                                        PasswordResetConfirmView, PasswordResetCompleteView,
                                        PasswordChangeView)
-from django.template.loader import get_template
+from django.contrib.auth.mixins import LoginRequiredMixin
 from users.models import User
 from users.forms import UserRegistrationForm
 from django.urls import reverse_lazy, reverse
@@ -16,6 +15,8 @@ from users.services import make_random_password
 
 
 # Create your views here.
+
+
 class UserCreateView(CreateView):
     model = User
     form_class = UserRegistrationForm
@@ -87,3 +88,15 @@ class PasswordResetDone(PasswordResetDoneView):
 
 class ResetComplete(PasswordResetCompleteView):
     template_name = 'users/password_reset_complete.html'
+
+
+class UserDetailView(DetailView, LoginRequiredMixin):
+    model = User
+
+
+class UserChangeView(UpdateView, LoginRequiredMixin):
+    model = User
+    fields = ('avatar', 'email', 'phone', 'country',)
+
+    def get_success_url(self):
+        return reverse('users:user_change', kwargs={'pk': self.object.pk})
