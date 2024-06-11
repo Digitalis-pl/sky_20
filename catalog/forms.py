@@ -29,6 +29,12 @@ class ProductForm(StyleFormMixin, ModelForm):
             raise ValidationError(f'Использование слов {bad_words}, запрещено')
 
 
+class ProductModeratorForm(StyleFormMixin, ModelForm):
+    class Meta:
+        model = Product
+        fields = ('description', 'category',)
+
+
 class ArticleForm(StyleFormMixin, ModelForm):
     class Meta:
         model = Blog

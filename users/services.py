@@ -7,3 +7,5 @@ def make_random_password():
     password = "".join(secrets.choice(character) for i in range(16))
 
     return password
+
+print(make_random_password())
