@@ -15,6 +15,8 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 
 from catalog.forms import ProductForm, VersionForm, ProductModeratorForm
 
+from catalog.services import get_prod_cache
+
 from django.core.mail import send_mail
 
 from django.core.exceptions import PermissionDenied
@@ -99,7 +101,7 @@ class ProductView(ListView):
     model = Product
 
     def get_queryset(self, *args, **kwargs):
-        queryset = super().get_queryset(*args, **kwargs)
+        queryset = get_prod_cache()
         queryset = queryset.filter(is_published=True)
         return queryset
 
