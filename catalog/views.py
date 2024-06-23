@@ -102,12 +102,11 @@ class ProductView(ListView):
 
     def get_queryset(self, *args, **kwargs):
         queryset = get_prod_cache()
-        queryset = queryset.filter(is_published=True)
         return queryset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        products = self.get_queryset()
+        products = get_prod_cache()
         for prod in products:
             versions = Version.objects.filter(product=prod)
             active_version = versions.filter(version_sign=True)
